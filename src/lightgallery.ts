@@ -994,6 +994,11 @@ export class LightGallery {
                     index,
                     delay: delay || 0,
                 });
+                const currentGalleryItem = this.galleryItems[index];
+                this.LGel.trigger('lgImageLoad', {
+                    index,
+                    canvasId: currentGalleryItem.canvasId,
+                });
             }
         }, speed);
     }

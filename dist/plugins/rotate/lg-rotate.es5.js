@@ -1,5 +1,5 @@
 /*!
- * lightgallery | 2.2.0-beta.4 | August 4th 2021
+ * lightgallery | 2.2.0-beta.4 | August 10th 2021
  * http://www.lightgalleryjs.com/
  * Copyright (c) 2020 Sachin Neravath;
  * @license GPLv3
@@ -76,8 +76,12 @@ var Rotate = /** @class */ (function () {
         // get lightGallery core plugin instance
         this.core = instance;
         this.$LG = $LG;
+        var defaultSettings = {
+            extraProps: ['imgRotate', 'imgContainerRotate', 'canvasId'],
+        };
+        this.core.settings = __assign(__assign({}, this.core.settings), defaultSettings);
         // extend module default settings with lightGallery core settings
-        this.settings = __assign(__assign({}, rotateSettings), this.core.settings);
+        this.settings = __assign(__assign(__assign({}, rotateSettings), this.core.settings), defaultSettings);
         return this;
     }
     Rotate.prototype.buildTemplates = function () {
@@ -114,13 +118,20 @@ var Rotate = /** @class */ (function () {
             var index = event.detail.index;
             var imageWrap = _this.core
                 .getSlideItem(index)
-                .find('.lg-img-wrap')
+                .find('.lg-object')
                 .first();
-            imageWrap.wrap('lg-img-rotate');
+            imageWrap.wrap('lg-img-rotate-container lg-img-rotate-el');
+            imageWrap.wrap('lg-img-rotate lg-img-rotate-el');
             _this.core
-                .getSlideItem(_this.core.index)
+                .getSlideItem(index)
                 .find('.lg-img-rotate')
-                .css('transition-duration', _this.settings.rotateSpeed + 'ms');
+                .css('transition-duration', _this.settings.rotateSpeed + 'ms')
+                .css('transform', "rotate(" + _this.core.galleryItems[index].imgRotate + "deg)");
+            _this.core
+                .getSlideItem(index)
+                .find('.lg-img-rotate-container')
+                .css('transition-duration', _this.settings.rotateSpeed + 'ms')
+                .css('transform', "rotate(" + _this.core.galleryItems[index].containerRotate + "deg)");
         });
         this.core.outer
             .find('#lg-rotate-left')
@@ -142,7 +153,8 @@ var Rotate = /** @class */ (function () {
         this.core.LGel.on(lGEvents.beforeSlide + ".rotate", function (event) {
             if (!_this.rotateValuesList[event.detail.index]) {
                 _this.rotateValuesList[event.detail.index] = {
-                    rotate: 0,
+                    rotate: _this.core.galleryItems[event.detail.index]
+                        .imgRotate,
                     flipHorizontal: 1,
                     flipVertical: 1,
                 };

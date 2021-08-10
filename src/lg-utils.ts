@@ -373,7 +373,7 @@ const utils = {
     ): string {
         const srcsetAttr = srcset ? `srcset="${srcset}"` : '';
         const sizesAttr = sizes ? `sizes="${sizes}"` : '';
-        const imgMarkup = `<img ${altAttr} ${srcsetAttr}  ${sizesAttr} class="lg-object lg-image" data-index="${index}" src="${src}" />`;
+        const imgMarkup = `<img crossorigin=“anonymous” ${altAttr} ${srcsetAttr}  ${sizesAttr} class="lg-object lg-image" data-index="${index}" src="${src}" />`;
         let sourceTag = '';
         if (sources) {
             const sourceObj =

@@ -1,5 +1,5 @@
 /*!
- * lightgallery | 2.2.0-beta.4 | August 4th 2021
+ * lightgallery | 2.2.0-beta.4 | August 10th 2021
  * http://www.lightgalleryjs.com/
  * Copyright (c) 2020 Sachin Neravath;
  * @license GPLv3
@@ -528,7 +528,7 @@ var utils = {
     getImgMarkup: function (index, src, altAttr, srcset, sizes, sources) {
         var srcsetAttr = srcset ? "srcset=\"" + srcset + "\"" : '';
         var sizesAttr = sizes ? "sizes=\"" + sizes + "\"" : '';
-        var imgMarkup = "<img " + altAttr + " " + srcsetAttr + "  " + sizesAttr + " class=\"lg-object lg-image\" data-index=\"" + index + "\" src=\"" + src + "\" />";
+        var imgMarkup = "<img crossorigin=\u201Canonymous\u201D " + altAttr + " " + srcsetAttr + "  " + sizesAttr + " class=\"lg-object lg-image\" data-index=\"" + index + "\" src=\"" + src + "\" />";
         var sourceTag = '';
         if (sources) {
             var sourceObj = typeof sources === 'string' ? JSON.parse(sources) : sources;
@@ -1447,6 +1447,11 @@ var LightGallery = /** @class */ (function () {
                 _this.LGel.trigger(lGEvents.slideItemLoad, {
                     index: index,
                     delay: delay || 0,
+                });
+                var currentGalleryItem = _this.galleryItems[index];
+                _this.LGel.trigger('lgImageLoad', {
+                    index: index,
+                    canvasId: currentGalleryItem.canvasId,
                 });
             }
         }, speed);

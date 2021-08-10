@@ -26,6 +26,9 @@ function getResponsiveThumbnailsSettings() {
 
 const $lgInlineContainer = document.getElementById('inline-gallery-container');
 if ($lgInlineContainer) {
+    $lgInlineContainer.addEventListener('lgImageLoad', (e) => {
+        console.log(e.detail.canvasId, e.detail.index);
+    });
     const inlineGallery = window.lightGallery($lgInlineContainer, {
         container: $lgInlineContainer,
         dynamic: true,
@@ -38,14 +41,16 @@ if ($lgInlineContainer) {
         pager: false,
         closable: false,
         showMaximizeIcon: true,
-        rotate: false,
         download: false,
         slideDelay: 400,
-        plugins: [lgZoom, lgShare, lgAutoplay, lgThumbnail],
+        plugins: [lgZoom, lgRotate, lgThumbnail],
         appendSubHtmlTo: '.lg-item',
         ...getResponsiveThumbnailsSettings(),
         dynamicEl: [
             {
+                imgRotate: '-180',
+                containerRotate: '-90',
+                canvasId: 'canvas-1',
                 src:
                     'https://images.unsplash.com/photo-1542103749-8ef59b94f47e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80',
                 responsive:
@@ -58,6 +63,9 @@ if ($lgInlineContainer) {
                 </div>`,
             },
             {
+                imgRotate: '-180',
+                containerRotate: '-90',
+                canvasId: 'canvas-2',
                 src:
                     'https://images.unsplash.com/photo-1473876988266-ca0860a443b8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80',
                 responsive:
@@ -70,6 +78,7 @@ if ($lgInlineContainer) {
                 </div>`,
             },
             {
+                canvasId: 'canvas-3',
                 src:
                     'https://images.unsplash.com/photo-1588953936179-d2a4734c5490?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1400&q=80',
                 responsive:
@@ -731,7 +740,7 @@ jQuery('#gallery-share-demo')
             thumbnail: false,
             pager: false,
             hash: true,
-            plugins: [lgZoom, lgShare, lgThumbnail, lgHash],
+            plugins: [lgZoom, lgRotate, lgThumbnail],
         });
     });
 jQuery('#gallery-captions-demo')

@@ -395,3 +395,16 @@
   right: 0;
   left: 0;
 }
+
+.lg-outer .lg-object.lg-canvas {
+  background-color: transparent;
+  z-index: 9;
+  position: absolute !important;
+  max-width: none !important;
+  max-height: none !important;
+  width: 0px;
+  height: 0px;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}

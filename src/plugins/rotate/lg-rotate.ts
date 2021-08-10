@@ -1,4 +1,5 @@
 import { lGEvents } from '../../lg-events';
+import { LightGallerySettings } from '../../lg-settings';
 import { LgQuery } from '../../lgQuery';
 import { LightGallery } from '../../lightgallery';
 import { rotateSettings, RotateSettings } from './lg-rotate-settings';
@@ -14,8 +15,19 @@ export default class Rotate {
         // get lightGallery core plugin instance
         this.core = instance;
         this.$LG = $LG;
+
+        const defaultSettings: Partial<LightGallerySettings> = {
+            extraProps: ['imgRotate', 'imgContainerRotate', 'canvasId'],
+        };
+
+        this.core.settings = { ...this.core.settings, ...defaultSettings };
+
         // extend module default settings with lightGallery core settings
-        this.settings = { ...rotateSettings, ...this.core.settings };
+        this.settings = {
+            ...rotateSettings,
+            ...this.core.settings,
+            ...defaultSettings,
+        };
 
         return this;
     }
@@ -55,14 +67,27 @@ export default class Rotate {
             const { index } = event.detail;
             const imageWrap = this.core
                 .getSlideItem(index)
-                .find('.lg-img-wrap')
+                .find('.lg-object')
                 .first();
 
-            imageWrap.wrap('lg-img-rotate');
+            imageWrap.wrap('lg-img-rotate-container lg-img-rotate-el');
+            imageWrap.wrap('lg-img-rotate lg-img-rotate-el');
             this.core
-                .getSlideItem(this.core.index)
+                .getSlideItem(index)
                 .find('.lg-img-rotate')
-                .css('transition-duration', this.settings.rotateSpeed + 'ms');
+                .css('transition-duration', this.settings.rotateSpeed + 'ms')
+                .css(
+                    'transform',
+                    `rotate(${this.core.galleryItems[index].imgRotate}deg)`,
+                );
+            this.core
+                .getSlideItem(index)
+                .find('.lg-img-rotate-container')
+                .css('transition-duration', this.settings.rotateSpeed + 'ms')
+                .css(
+                    'transform',
+                    `rotate(${this.core.galleryItems[index].containerRotate}deg)`,
+                );
         });
 
         this.core.outer
@@ -89,7 +114,8 @@ export default class Rotate {
         this.core.LGel.on(`${lGEvents.beforeSlide}.rotate`, (event) => {
             if (!this.rotateValuesList[event.detail.index]) {
                 this.rotateValuesList[event.detail.index] = {
-                    rotate: 0,
+                    rotate: this.core.galleryItems[event.detail.index]
+                        .imgRotate,
                     flipHorizontal: 1,
                     flipVertical: 1,
                 };

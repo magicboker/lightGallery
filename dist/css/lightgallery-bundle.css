@@ -651,18 +651,15 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 .lg-outer .lg-item.lg-complete.lg-zoomable .lg-dummy-img {
   -webkit-transform: scale3d(1, 1, 1);
   transform: scale3d(1, 1, 1);
-  will-change: opacity, transform;
+  will-change: auto;
   -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.12, 0.415, 0.01, 1.19) 0s, opacity 0.15s !important;
   -moz-transition: -moz-transform 0.5s cubic-bezier(0.12, 0.415, 0.01, 1.19) 0s, opacity 0.15s !important;
   -o-transition: -o-transform 0.5s cubic-bezier(0.12, 0.415, 0.01, 1.19) 0s, opacity 0.15s !important;
   transition: transform 0.5s cubic-bezier(0.12, 0.415, 0.01, 1.19) 0s, opacity 0.15s !important;
-  -webkit-transform-origin: 0 0;
-  -moz-transform-origin: 0 0;
-  -ms-transform-origin: 0 0;
-  transform-origin: 0 0;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   backface-visibility: hidden;
+  -webkit-filter: blur(0);
 }
 
 .lg-icon.lg-zoom-in:after {
@@ -1078,7 +1075,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   transform: translate3d(0, 0, 0);
 }
 
-.lg-outer .lg-img-rotate {
+.lg-outer .lg-img-rotate-el {
   position: absolute;
   left: 0;
   right: 0;
@@ -1550,4 +1547,17 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   bottom: 0;
   right: 0;
   left: 0;
+}
+
+.lg-outer .lg-object.lg-canvas {
+  background-color: transparent;
+  z-index: 9;
+  position: absolute !important;
+  max-width: none !important;
+  max-height: none !important;
+  width: 0px;
+  height: 0px;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
 }

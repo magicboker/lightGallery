@@ -44,7 +44,7 @@ export const zoomSettings: ZoomSettings = {
     scale: 1,
     zoom: true,
     actualSize: true,
-    showZoomInOutIcons: false,
+    showZoomInOutIcons: true,
     actualSizeIcons: {
         zoomIn: 'lg-zoom-in',
         zoomOut: 'lg-zoom-out',

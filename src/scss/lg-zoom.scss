@@ -42,14 +42,23 @@
         .lg-dummy-img {
             // Translate required for zoom
             @include scale3d(1, 1, 1);
-            will-change: opacity, transform;
+            will-change: auto;
+            //image-rendering: pixelated;
             @include transitionCustom(
                 transform $zoom-transition-duration
                     cubic-bezier(0.12, 0.415, 0.01, 1.19) 0s,
                 opacity 0.15s !important
             );
-            @include transform-origin(0 0);
+            //@include transform-origin(0 0);
             @include backface-visibility(hidden);
+            -webkit-filter: blur(0); 
+            &.no-transition {
+                // transform: translate3d(-50%, -50%, 0px) !important;
+                // max-width: none !important;
+                // max-height: none !important;
+                // top: 50% !important;
+                // left: 50% !important;;
+            }
         }
     }
 }
