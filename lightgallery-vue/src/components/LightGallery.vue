@@ -26,6 +26,7 @@ import {
     lGEvents,
     PosterClickDetail,
     SlideItemLoadDetail,
+    ImageLoadDetail,
 } from '../../../src/lg-events';
 
 @Options({
@@ -55,6 +56,9 @@ import {
             type: Function,
         },
         onSlideItemLoad: {
+            type: Function,
+        },
+        onImageLoad: {
             type: Function,
         },
         onBeforeSlide: {
@@ -90,9 +94,9 @@ import {
     },
 })
 export default class Lightgallery extends Vue {
-	$refs!: {
-		container: HTMLElement
-	}
+    $refs!: {
+        container: HTMLElement;
+    };
 
     settings!: LightGallerySettings;
 
@@ -104,6 +108,7 @@ export default class Lightgallery extends Vue {
     onBeforeOpen!: (detail: BeforeOpenDetail) => void;
     onAfterOpen!: (detail: AfterOpenDetail) => void;
     onSlideItemLoad!: (detail: SlideItemLoadDetail) => void;
+    onImageLoad!: (detail: ImageLoadDetail) => void;
     onBeforeSlide!: (detail: BeforeSlideDetail) => void;
     onAfterSlide!: (detail: AfterSlideDetail) => void;
     onPosterClick!: (detail: PosterClickDetail) => void;
@@ -119,10 +124,7 @@ export default class Lightgallery extends Vue {
 
     mounted(): void {
         this.registerEvents.call(this);
-        this.LG = lightGallery(
-            this.$refs.container,
-            { ...this.settings },
-        );
+        this.LG = lightGallery(this.$refs.container, { ...this.settings });
     }
 
     unmounted(): void {
@@ -137,8 +139,8 @@ export default class Lightgallery extends Vue {
 
     private registerEvents(): void {
         Object.keys(lGEvents).forEach((key: string) => {
-			// https://github.com/microsoft/TypeScript/issues/28357
-            ((this.$refs.container) as any).addEventListener(
+            // https://github.com/microsoft/TypeScript/issues/28357
+            (this.$refs.container as any).addEventListener(
                 lGEvents[key].split('.')[0],
                 (event: CustomEvent) => {
                     if ((this as any)[this.getMethodName(key)]) {

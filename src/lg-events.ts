@@ -18,6 +18,7 @@ export const lGEvents: {
     beforeOpen: 'lgBeforeOpen',
     afterOpen: 'lgAfterOpen',
     slideItemLoad: 'lgSlideItemLoad',
+    imageLoad: 'lgImageLoad',
     beforeSlide: 'lgBeforeSlide',
     afterSlide: 'lgAfterSlide',
     posterClick: 'lgPosterClick',
@@ -98,6 +99,22 @@ export interface SlideItemLoadDetail {
      * Respect the delay when you use this event
      */
     delay: number;
+}
+
+/**
+ * Fired once the image inside the slide has been completely loaded .
+ * @name lgImageLoad
+ * @method onImageLoad
+ */
+export interface ImageLoadDetail {
+    /**
+     * Index of the slide
+     */
+    index: number;
+    /**
+     * Id of the canvas
+     */
+    canvasId: number;
 }
 
 /**

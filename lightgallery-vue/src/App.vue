@@ -3,10 +3,12 @@
         :settings="{ counter: false, plugins: plugins }"
         :onInit="onInit"
         :onBeforeSlide="onBeforeSlide"
+        :onImageLoad="onImageLoad"
     >
         <a
             data-lg-size="480-475-480, 800-791-800, 1406-1390"
             class="gallery-item"
+            data-canvas-id="canvas-1"
             data-src="https://images.unsplash.com/photo-1581894158358-5ecd2c518883?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1406&q=80"
             data-responsive="https://images.unsplash.com/photo-1581894158358-5ecd2c518883?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80 480, https://images.unsplash.com/photo-1581894158358-5ecd2c518883?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80 800"
             data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@entrycube' >Diego Guzmán </a></h4> <p> Location - <a href='https://unsplash.com/s/photos/fushimi-inari-taisha-shrine-senbontorii%2C-68%E7%95%AA%E5%9C%B0-fukakusa-yabunouchicho%2C-fushimi-ward%2C-kyoto%2C-japan'>Fushimi Ward, Kyoto, Japan</a></p>"
@@ -21,6 +23,7 @@
             data-pinterest-text="Shinimamiya, Osaka, Japan"
             data-tweet-text="Shinimamiya, Osaka, Japan"
             class="gallery-item"
+            data-canvas-id="canvas-2"
             data-src="https://images.unsplash.com/photo-1544550285-f813152fb2fd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80"
             data-responsive="https://images.unsplash.com/photo-1544550285-f813152fb2fd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80 480, https://images.unsplash.com/photo-1544550285-f813152fb2fd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80 800"
             data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@asoshiation' >Shah </a></h4><p> Location - <a href='https://unsplash.com/s/photos/shinimamiya%2C-osaka%2C-japan'>Shinimamiya, Osaka, Japan</a></p>"
@@ -52,13 +55,14 @@ import { Options, Vue } from 'vue-class-component';
 import Lightgallery from './components/LightGallery.vue';
 import { LightGallery as LGPlugin } from '../../src/lightgallery';
 import lgZoom from '../../src/plugins/zoom/lg-zoom';
+import lgRotate from '../../src/plugins/rotate/lg-rotate';
 
 @Options({
     components: {
         Lightgallery,
     },
     data: () => ({
-        plugins: [lgZoom],
+        plugins: [lgZoom, lgRotate],
     }),
     methods: {
         onInit: (detail: any) => {
@@ -69,6 +73,10 @@ import lgZoom from '../../src/plugins/zoom/lg-zoom';
         },
         onBeforeSlide: () => {
             console.log('calling vefore slide');
+        },
+        onImageLoad: (detail: any) => {
+            const { index, canvasId } = detail;
+            console.log(index, canvasId);
         },
     },
 })

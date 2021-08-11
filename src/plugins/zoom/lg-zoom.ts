@@ -94,6 +94,7 @@ export default class Zoom {
             if (!$canvas.get()) {
                 imageEl
                     .parent()
+                    .parent()
                     .prepend(
                         `<canvas id="${currentItem.canvasId}" class="lg-canvas lg-object"></canvas>`,
                     );

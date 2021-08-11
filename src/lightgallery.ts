@@ -995,7 +995,7 @@ export class LightGallery {
                     delay: delay || 0,
                 });
                 const currentGalleryItem = this.galleryItems[index];
-                this.LGel.trigger('lgImageLoad', {
+                this.LGel.trigger(lGEvents.imageLoad, {
                     index,
                     canvasId: currentGalleryItem.canvasId,
                 });
