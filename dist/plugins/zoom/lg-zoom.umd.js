@@ -64,6 +64,7 @@
         beforeOpen: 'lgBeforeOpen',
         afterOpen: 'lgAfterOpen',
         slideItemLoad: 'lgSlideItemLoad',
+        imageLoad: 'lgImageLoad',
         beforeSlide: 'lgBeforeSlide',
         afterSlide: 'lgAfterSlide',
         posterClick: 'lgPosterClick',
@@ -116,6 +117,7 @@
                 var $canvas = this.core.getSlideItem(index).find('.lg-canvas');
                 if (!$canvas.get()) {
                     imageEl
+                        .parent()
                         .parent()
                         .prepend("<canvas id=\"" + currentItem.canvasId + "\" class=\"lg-canvas lg-object\"></canvas>");
                 }

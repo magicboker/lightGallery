@@ -5019,7 +5019,7 @@ if (typeof window !== 'undefined') {
 // EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue"}
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader-v16/dist??ref--0-1!./src/components/LightGallery.vue?vue&type=template&id=b7aaf09c
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader-v16/dist??ref--0-1!./src/components/LightGallery.vue?vue&type=template&id=2f770e05
 
 var _hoisted_1 = {
   ref: "container",
@@ -5028,7 +5028,7 @@ var _hoisted_1 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return Object(external_commonjs_vue_commonjs2_vue_root_Vue_["openBlock"])(), Object(external_commonjs_vue_commonjs2_vue_root_Vue_["createElementBlock"])("div", _hoisted_1, [Object(external_commonjs_vue_commonjs2_vue_root_Vue_["renderSlot"])(_ctx.$slots, "default")], 512);
 }
-// CONCATENATED MODULE: ./src/components/LightGallery.vue?vue&type=template&id=b7aaf09c
+// CONCATENATED MODULE: ./src/components/LightGallery.vue?vue&type=template&id=2f770e05
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.keys.js
 var es_object_keys = __webpack_require__("b64b");
@@ -6877,6 +6877,7 @@ var lGEvents = {
   beforeOpen: 'lgBeforeOpen',
   afterOpen: 'lgAfterOpen',
   slideItemLoad: 'lgSlideItemLoad',
+  imageLoad: 'lgImageLoad',
   beforeSlide: 'lgBeforeSlide',
   afterSlide: 'lgAfterSlide',
   posterClick: 'lgPosterClick',
@@ -7711,7 +7712,7 @@ var lightgallery_LightGallery = /*#__PURE__*/function () {
 
           var currentGalleryItem = _this8.galleryItems[index];
 
-          _this8.LGel.trigger('lgImageLoad', {
+          _this8.LGel.trigger(lGEvents.imageLoad, {
             index: index,
             canvasId: currentGalleryItem.canvasId
           });
@@ -9094,6 +9095,9 @@ LightGalleryvue_type_script_lang_ts_Lightgallery = __decorate([Options({
       type: Function
     },
     onSlideItemLoad: {
+      type: Function
+    },
+    onImageLoad: {
       type: Function
     },
     onBeforeSlide: {

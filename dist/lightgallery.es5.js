@@ -724,6 +724,7 @@ var lGEvents = {
     beforeOpen: 'lgBeforeOpen',
     afterOpen: 'lgAfterOpen',
     slideItemLoad: 'lgSlideItemLoad',
+    imageLoad: 'lgImageLoad',
     beforeSlide: 'lgBeforeSlide',
     afterSlide: 'lgAfterSlide',
     posterClick: 'lgPosterClick',
@@ -1450,7 +1451,7 @@ var LightGallery = /** @class */ (function () {
                     delay: delay || 0,
                 });
                 var currentGalleryItem = _this.galleryItems[index];
-                _this.LGel.trigger('lgImageLoad', {
+                _this.LGel.trigger(lGEvents.imageLoad, {
                     index: index,
                     canvasId: currentGalleryItem.canvasId,
                 });

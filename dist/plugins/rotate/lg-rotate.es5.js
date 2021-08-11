@@ -46,6 +46,7 @@ var lGEvents = {
     beforeOpen: 'lgBeforeOpen',
     afterOpen: 'lgAfterOpen',
     slideItemLoad: 'lgSlideItemLoad',
+    imageLoad: 'lgImageLoad',
     beforeSlide: 'lgBeforeSlide',
     afterSlide: 'lgAfterSlide',
     posterClick: 'lgPosterClick',
