@@ -102,9 +102,8 @@ export class lgQuery {
             return group1.toUpperCase();
         });
         if (this.cssVenderPrefixes.indexOf(property) !== -1) {
-            el.style[
-                property.charAt(0).toLowerCase() + property.slice(1)
-            ] = value;
+            const style = property.charAt(0).toLowerCase() + property.slice(1);
+            el.style[style] = value;
             el.style['webkit' + property] = value;
             el.style['moz' + property] = value;
             el.style['ms' + property] = value;
