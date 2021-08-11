@@ -1,5 +1,5 @@
 /*!
- * lightgallery | 2.2.0-beta.4 | August 10th 2021
+ * lightgallery | 2.2.0-beta.4 | August 11th 2021
  * http://www.lightgalleryjs.com/
  * Copyright (c) 2020 Sachin Neravath;
  * @license GPLv3
@@ -113,7 +113,8 @@
                 return group1.toUpperCase();
             });
             if (this.cssVenderPrefixes.indexOf(property) !== -1) {
-                el.style[property.charAt(0).toLowerCase() + property.slice(1)] = value;
+                var style = property.charAt(0).toLowerCase() + property.slice(1);
+                el.style[style] = value;
                 el.style['webkit' + property] = value;
                 el.style['moz' + property] = value;
                 el.style['ms' + property] = value;
