@@ -5,31 +5,10 @@ const colors = require('colors/safe');
 const replace = require('replace-in-file');
 
 (async function main() {
-    process.chdir('lightgallery-react');
+    process.chdir('lightgallery-vue');
     exec('npm run build:library');
-    process.chdir('../lightgallery-vue');
-    exec('npm run build:library');
-    process.chdir('../lightgallery-angular/latest');
-    exec('npm run build:library');
-    process.chdir('../11');
-    exec('npm run build');
-    process.chdir('../10');
-    exec('npm run build');
-    process.chdir('../9');
-    exec('npm run build');
-    process.chdir('../../lightgallery-lit');
-    exec('npm run build');
     process.chdir('../');
-    exec('npm run copyReactBuild');
     exec('npm run copyVueBuild');
-    exec('npm run copyAngularBuild');
-    exec('npm run copyLitBuild');
-
-    replace.sync({
-        files: 'dist/react/Lightgallery.d.ts',
-        from: /lightgallery\//g,
-        to: '../',
-    });
     replace.sync({
         files: 'dist/vue/LightGallery.vue.d.ts',
         from: /..\/..\/..\/src\//g,
