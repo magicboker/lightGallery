@@ -253,8 +253,17 @@ export default class Zoom {
         );
         this.containerRect = this.core.outer.get().getBoundingClientRect();
 
-        $canvas.css('height', $image.get().offsetHeight + 'px');
-        $canvas.css('width', $image.get().offsetWidth + 'px');
+        let width = $image.get().offsetWidth;
+        let height = $image.get().offsetHeight;
+        const currentItem = this.core.galleryItems[this.core.index];
+        let imgRotate = currentItem.imgRotate;
+        if (imgRotate == "90" || imgRotate == "-90") {
+            let tmp = width;
+            width = height;
+            height = tmp;
+        }
+        $canvas.css('height', height + 'px');
+        $canvas.css('width', width + 'px');
     }
 
     /**
@@ -394,8 +403,18 @@ export default class Zoom {
             .find('.lg-canvas')
             .first();
 
-        $canvas.css('height', $image.get().offsetHeight * style.scale + 'px');
-        $canvas.css('width', $image.get().offsetWidth * style.scale + 'px');
+        let width = $image.get().offsetWidth;
+        let height = $image.get().offsetHeight;
+        const currentItem = this.core.galleryItems[this.core.index];
+        let imgRotate = currentItem.imgRotate;
+        if (imgRotate == "90" || imgRotate == "-90") {
+            let tmp = width;
+            width = height;
+            height = tmp;
+        }
+
+        $canvas.css('height', height * style.scale + 'px');
+        $canvas.css('width', width * style.scale + 'px');
 
         const $dummyImage = this.core.outer
             .find('.lg-current .lg-dummy-img')
