@@ -1,5 +1,5 @@
 /*!
- * lightgallery | 2.2.0-beta.4 | August 11th 2021
+ * lightgallery | 2.2.0-beta.4 | August 12th 2021
  * http://www.lightgalleryjs.com/
  * Copyright (c) 2020 Sachin Neravath;
  * @license GPLv3
@@ -243,8 +243,17 @@
             this.imageYSize = this.getImageSize($image.get(), 'y');
             this.imageXSize = this.getImageSize($image.get(), 'x');
             this.containerRect = this.core.outer.get().getBoundingClientRect();
-            $canvas.css('height', $image.get().offsetHeight + 'px');
-            $canvas.css('width', $image.get().offsetWidth + 'px');
+            var width = $image.get().offsetWidth;
+            var height = $image.get().offsetHeight;
+            var currentItem = this.core.galleryItems[this.core.index];
+            var imgRotate = currentItem.imgRotate;
+            if (imgRotate == "90" || imgRotate == "-90") {
+                var tmp = width;
+                width = height;
+                height = tmp;
+            }
+            $canvas.css('height', height + 'px');
+            $canvas.css('width', width + 'px');
         };
         /**
          * @desc Image zoom
@@ -360,8 +369,17 @@
                 .getSlideItem(this.core.index)
                 .find('.lg-canvas')
                 .first();
-            $canvas.css('height', $image.get().offsetHeight * style.scale + 'px');
-            $canvas.css('width', $image.get().offsetWidth * style.scale + 'px');
+            var width = $image.get().offsetWidth;
+            var height = $image.get().offsetHeight;
+            var currentItem = this.core.galleryItems[this.core.index];
+            var imgRotate = currentItem.imgRotate;
+            if (imgRotate == "90" || imgRotate == "-90") {
+                var tmp = width;
+                width = height;
+                height = tmp;
+            }
+            $canvas.css('height', height * style.scale + 'px');
+            $canvas.css('width', width * style.scale + 'px');
             var $dummyImage = this.core.outer
                 .find('.lg-current .lg-dummy-img')
                 .first();

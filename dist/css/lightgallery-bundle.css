@@ -1118,6 +1118,34 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
   content: '\e902';
 }
 
+.lg-outer .lg-item.lg-complete.lg-zoomable .lg-image,
+.lg-outer .lg-item.lg-complete.lg-zoomable .lg-dummy-img {
+  -webkit-transform-origin: center center;
+  -moz-transform-origin: center center;
+  -ms-transform-origin: center center;
+  transform-origin: center center;
+}
+
+.lg-outer .lg-img-rotate-el {
+  -webkit-transition: -webkit-transform 0.4s cubic-bezier(0, 0, 0.25, 1) 0s;
+  -moz-transition: -moz-transform 0.4s cubic-bezier(0, 0, 0.25, 1) 0s;
+  -o-transition: -o-transform 0.4s cubic-bezier(0, 0, 0.25, 1) 0s;
+  transition: transform 0.4s cubic-bezier(0, 0, 0.25, 1) 0s;
+}
+
+img.lg-object.lg-image {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
 .lg-medium-zoom-item {
   cursor: zoom-in;
 }
