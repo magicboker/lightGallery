@@ -1146,6 +1146,12 @@ img.lg-object.lg-image {
   margin: auto;
 }
 
+div.lg-img-rotate-container.lg-img-rotate-el {
+  width: auto;
+  height: auto;
+  margin: auto;
+}
+
 .lg-medium-zoom-item {
   cursor: zoom-in;
 }

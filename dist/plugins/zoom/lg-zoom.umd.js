@@ -1,5 +1,5 @@
 /*!
- * lightgallery | 2.2.0-beta.4 | August 12th 2021
+ * lightgallery | 2.2.0-beta.4 | August 27th 2021
  * http://www.lightgalleryjs.com/
  * Copyright (c) 2020 Sachin Neravath;
  * @license GPLv3
@@ -247,10 +247,28 @@
             var height = $image.get().offsetHeight;
             var currentItem = this.core.galleryItems[this.core.index];
             var imgRotate = currentItem.imgRotate;
-            if (imgRotate == "90" || imgRotate == "-90") {
+            if (imgRotate == '90' || imgRotate == '-90') {
                 var tmp = width;
                 width = height;
                 height = tmp;
+            }
+            var imgRot = Number(imgRotate);
+            if (!Number.isInteger(imgRot)) {
+                imgRot = 0;
+            }
+            var containerRot = Number(currentItem.containerRotate);
+            if (!Number.isInteger(containerRot)) {
+                containerRot = 0;
+            }
+            var rot = Math.abs(imgRot + containerRot);
+            if (rot == 90 || rot == 270) {
+                var $container = this.core
+                    .getSlideItem(this.core.index)
+                    .find('.lg-img-rotate-container')
+                    .first();
+                var exclude_h = parseInt(currentItem.thumbHeight, 10) + 48 + 4;
+                $container.css('max-width', 'calc(100vh - ' + exclude_h + 'px');
+                $container.css('max-height', '100vw');
             }
             $canvas.css('height', height + 'px');
             $canvas.css('width', width + 'px');
@@ -373,10 +391,28 @@
             var height = $image.get().offsetHeight;
             var currentItem = this.core.galleryItems[this.core.index];
             var imgRotate = currentItem.imgRotate;
-            if (imgRotate == "90" || imgRotate == "-90") {
+            if (imgRotate == '90' || imgRotate == '-90') {
                 var tmp = width;
                 width = height;
                 height = tmp;
+            }
+            var imgRot = Number(imgRotate);
+            if (!Number.isInteger(imgRot)) {
+                imgRot = 0;
+            }
+            var containerRot = Number(currentItem.containerRotate);
+            if (!Number.isInteger(containerRot)) {
+                containerRot = 0;
+            }
+            var rot = Math.abs(imgRot + containerRot);
+            if (rot == 90 || rot == 270) {
+                var $container = this.core
+                    .getSlideItem(this.core.index)
+                    .find('.lg-img-rotate-container')
+                    .first();
+                var exclude_h = parseInt(currentItem.thumbHeight, 10) + 48 + 4;
+                $container.css('max-width', 'calc(100vh - ' + exclude_h + 'px');
+                $container.css('max-height', '100vw');
             }
             $canvas.css('height', height * style.scale + 'px');
             $canvas.css('width', width * style.scale + 'px');

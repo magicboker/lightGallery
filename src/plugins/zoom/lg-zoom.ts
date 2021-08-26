@@ -256,11 +256,29 @@ export default class Zoom {
         let width = $image.get().offsetWidth;
         let height = $image.get().offsetHeight;
         const currentItem = this.core.galleryItems[this.core.index];
-        let imgRotate = currentItem.imgRotate;
-        if (imgRotate == "90" || imgRotate == "-90") {
-            let tmp = width;
+        const imgRotate = currentItem.imgRotate;
+        if (imgRotate == '90' || imgRotate == '-90') {
+            const tmp = width;
             width = height;
             height = tmp;
+        }
+        let imgRot = Number(imgRotate);
+        if (!Number.isInteger(imgRot)) {
+            imgRot = 0;
+        }
+        let containerRot = Number(currentItem.containerRotate);
+        if (!Number.isInteger(containerRot)) {
+            containerRot = 0;
+        }
+        const rot = Math.abs(imgRot + containerRot);
+        if (rot == 90 || rot == 270) {
+            const $container = this.core
+                .getSlideItem(this.core.index)
+                .find('.lg-img-rotate-container')
+                .first();
+            const exclude_h = parseInt(currentItem.thumbHeight, 10) + 48 + 4;
+            $container.css('max-width', 'calc(100vh - ' + exclude_h + 'px');
+            $container.css('max-height', '100vw');
         }
         $canvas.css('height', height + 'px');
         $canvas.css('width', width + 'px');
@@ -406,11 +424,29 @@ export default class Zoom {
         let width = $image.get().offsetWidth;
         let height = $image.get().offsetHeight;
         const currentItem = this.core.galleryItems[this.core.index];
-        let imgRotate = currentItem.imgRotate;
-        if (imgRotate == "90" || imgRotate == "-90") {
-            let tmp = width;
+        const imgRotate = currentItem.imgRotate;
+        if (imgRotate == '90' || imgRotate == '-90') {
+            const tmp = width;
             width = height;
             height = tmp;
+        }
+        let imgRot = Number(imgRotate);
+        if (!Number.isInteger(imgRot)) {
+            imgRot = 0;
+        }
+        let containerRot = Number(currentItem.containerRotate);
+        if (!Number.isInteger(containerRot)) {
+            containerRot = 0;
+        }
+        const rot = Math.abs(imgRot + containerRot);
+        if (rot == 90 || rot == 270) {
+            const $container = this.core
+                .getSlideItem(this.core.index)
+                .find('.lg-img-rotate-container')
+                .first();
+            const exclude_h = parseInt(currentItem.thumbHeight, 10) + 48 + 4;
+            $container.css('max-width', 'calc(100vh - ' + exclude_h + 'px');
+            $container.css('max-height', '100vw');
         }
 
         $canvas.css('height', height * style.scale + 'px');
