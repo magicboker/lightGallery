@@ -276,7 +276,8 @@ export default class Zoom {
                 .getSlideItem(this.core.index)
                 .find('.lg-img-rotate-container')
                 .first();
-            const exclude_h = parseInt(currentItem.thumbHeight, 10) + 48 + 4;
+            const thumb_h = currentItem.thumbHeight || '106';
+            const exclude_h = parseInt(thumb_h, 10) + 48 + 4;
             $container.css('max-width', 'calc(100vh - ' + exclude_h + 'px)');
             $container.css('max-height', '100vw');
         }
@@ -444,7 +445,8 @@ export default class Zoom {
                 .getSlideItem(this.core.index)
                 .find('.lg-img-rotate-container')
                 .first();
-            const exclude_h = parseInt(currentItem.thumbHeight, 10) + 48 + 4;
+            const thumb_h = currentItem.thumbHeight || '106';
+            const exclude_h = parseInt(thumb_h, 10) + 48 + 4;
             $container.css('max-width', 'calc(100vh - ' + exclude_h + 'px)');
             $container.css('max-height', '100vw');
         }
