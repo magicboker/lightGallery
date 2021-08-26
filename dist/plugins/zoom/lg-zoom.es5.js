@@ -261,7 +261,7 @@ var Zoom = /** @class */ (function () {
                 .find('.lg-img-rotate-container')
                 .first();
             var exclude_h = parseInt(currentItem.thumbHeight, 10) + 48 + 4;
-            $container.css('max-width', 'calc(100vh - ' + exclude_h + 'px');
+            $container.css('max-width', 'calc(100vh - ' + exclude_h + 'px)');
             $container.css('max-height', '100vw');
         }
         $canvas.css('height', height + 'px');
@@ -405,7 +405,7 @@ var Zoom = /** @class */ (function () {
                 .find('.lg-img-rotate-container')
                 .first();
             var exclude_h = parseInt(currentItem.thumbHeight, 10) + 48 + 4;
-            $container.css('max-width', 'calc(100vh - ' + exclude_h + 'px');
+            $container.css('max-width', 'calc(100vh - ' + exclude_h + 'px)');
             $container.css('max-height', '100vw');
         }
         $canvas.css('height', height * style.scale + 'px');
